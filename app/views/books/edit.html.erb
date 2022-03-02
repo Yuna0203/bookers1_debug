@@ -1,8 +1,20 @@
 <h1>Editing Book</h1>
 
-<form>
-<%= render 'form', book: @book %>
-</form>
+<%= form_with model: @book, url: update_book_path(@book.id), method: :patch, local: true do |f| %>
 
-<%= link_to 'Show', @book, class: "show_#{@book.id}" %> |
-<%= link_to 'Back', books_path, class: "back" %>
+<div class="edit-item">
+  <p>Title</p>
+  <%= f.text_field :title %>
+</div>
+<div class="edit-item">
+  <p>Body</p>
+  <%= f.text_area :body %>
+</div>
+<div class="edit-item">
+  <%= f.submit 'Update Book' , class: 'submit' %>
+</div>
+<%= link_to "Show", book_path(@book.id) , class: 'cursor' %>
+|
+<a class="link" href="/books" class="cursor">Back</a>
+
+<% end %>
